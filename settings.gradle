@@ -1,0 +1,2 @@
+rootProject.name = "FSE_project_Android"
+include ':app'
