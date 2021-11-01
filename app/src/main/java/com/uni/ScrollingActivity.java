@@ -30,9 +30,9 @@ import android.view.View;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 import com.uni.databinding.ActivityScrollingBinding;
-import org.json.JSONArray;
+/*import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.JSONObject;*/
 
 import java.io.IOException;
 import java.lang.ref.ReferenceQueue;
@@ -81,7 +81,7 @@ public class ScrollingActivity extends AppCompatActivity {
              ActivityCompat.requestPermissions(ScrollingActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},PERMISSION_CODE);
          }
          Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-         cityName = getCityName(location.getLongitude(),location.getLatitude());
+         cityName = "Pinsk";
 
          //getWeatherInfo(cityName);
          searchIV.setOnClickListener(new View.OnClickListener() {
