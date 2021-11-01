@@ -13,14 +13,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/idPBLoading"
-            android:visibility="visible"
+            android:visibility="invisible"
             android:layout_centerInParent="true"
             />
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/idRlHome"
-            android:visibility="gone"
+            android:visibility="visible"
             >
         <ImageView
                 android:layout_width="match_parent"
@@ -85,7 +85,7 @@
                     android:layout_margin="10dp"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
-                    android:src=""/>
+                    android:src="@drawable/ic_search"/>
 
         </LinearLayout>
 
@@ -127,15 +127,16 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_marginBottom="10dp"
+                android:layout_above="@id/idRVWeather"
                 android:text="Today's weather Forecast"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:layout_above="@id/idRvWeather"
+
                 />
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/idRvWeather"
+                android:id="@+id/idRVWeather"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
