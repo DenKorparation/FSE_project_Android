@@ -14,7 +14,7 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.FSE_project_Android">
         <activity
-                android:name=".ScrollingActivity"
+                android:name=".MainActivity"
                 android:label="@string/title_activity_scrolling"
                 android:theme="@style/Theme.FSE_project_Android.NoActionBar">
             <intent-filter>
