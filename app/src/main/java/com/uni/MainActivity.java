@@ -1,39 +1,66 @@
 package com.uni;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.LocationManager;
-import android.media.MediaCodec;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.WindowManager;
-import android.widget.*;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import android.os.AsyncTask;
+import android.provider.ContactsContract;
 import android.view.View;
-import com.google.android.material.textfield.TextInputEditText;
-import com.squareup.picasso.Picasso;
-import com.uni.databinding.ActivityScrollingBinding;
-import java.io.IOException;
-import java.lang.ref.ReferenceQueue;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
+    private Database database;
+    private EditText user_field;
+    private Button main_btn;
+    private TextView result_info;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        setContentView(R.layout.activity_scrolling);
-    };
+        database = new Database();
+
+        user_field = findViewById(R.id.user_field);
+        main_btn = findViewById(R.id.main_button);
+        result_info = findViewById(R.id.result_info);
+
+        main_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(user_field.getText().toString().trim().equals(""))
+                    Toast.makeText(MainActivity.this, R.string.no_user_input, Toast.LENGTH_LONG).show();
+                else{
+                    database.setNameOfCity(user_field.getText().toString().trim());
+                    new Request().execute();
+                    System.out.println("|" + user_field.getText().toString().trim() + "|  " + database.getCurWeatherData().getTemp());
+                }
+            }
+        });
+    }
+    private class Request extends AsyncTask<String, String, String> {
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+            result_info.setText("Ожидайте...");
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            database.request();
+            return null;
+        }
+
+        //@Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if (database.isCorrectData())
+                result_info.setText(database.getNameOfCity() + "\n" + Float.toString(database.getCurWeatherData().getTemp()));
+            else
+                result_info.setText("Incorrect data");
+        }
+    }
 }
