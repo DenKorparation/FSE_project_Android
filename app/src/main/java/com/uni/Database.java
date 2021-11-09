@@ -18,10 +18,12 @@ public class Database {
     private DataOfWeather[] hourlyForecast = new DataOfWeather [numberOfHours];
     private DataOfWeather[] dailyForecast = new DataOfWeather[numberOfDays];
     private String nameOfCity;
+    private String partOfDay;
     private boolean isCorrectData;
 
     public Database(){
         isCorrectData = false;
+        partOfDay = "day";
         nameOfCity = "";
         for(int i = 0; i < numberOfHours; i++){
             hourlyForecast[i] = new DataOfWeather();
@@ -49,6 +51,13 @@ public class Database {
                     curWeatherData.setPressure(obj.getJSONObject("main").getInt("pressure"));
                     curWeatherData.setHumidity(obj.getJSONObject("main").getInt("humidity"));
                     curWeatherData.setTime(obj.getInt("dt"));
+                    curWeatherData.setCondition(obj.getJSONObject("weather").getString("main"));
+                    curWeatherData.setIdIcon(obj.getJSONObject("weather").getString("icon"));
+                    if(curWeatherData.getIdIcon().charAt(curWeatherData.getIdIcon().length() - 1) == 'd')
+                        partOfDay = "day";
+                    else
+                        partOfDay = "night";
+
                 }
                 else
                     isCorrectData = false;
@@ -73,6 +82,8 @@ public class Database {
                         hourlyForecast[i].setPressure(list.getJSONObject(i).getJSONObject("main").getInt("pressure"));
                         hourlyForecast[i].setHumidity(list.getJSONObject(i).getJSONObject("main").getInt("humidity"));
                         hourlyForecast[i].setTime(list.getJSONObject(i).getInt("dt"));
+                        hourlyForecast[i].setCondition(obj.getJSONObject("weather").getString("main"));
+                        hourlyForecast[i].setIdIcon(obj.getJSONObject("weather").getString("icon"));
                     }
                 }else
                     isCorrectData = false;
