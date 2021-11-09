@@ -18,6 +18,7 @@ public class Database {
     private DataOfWeather[] hourlyForecast = new DataOfWeather [numberOfHours];
     private DataOfWeather[] dailyForecast = new DataOfWeather[numberOfDays];
     private String nameOfCity;
+    private String cur_Condition;
     private String partOfDay;
     private boolean isCorrectData;
 
@@ -25,6 +26,7 @@ public class Database {
         isCorrectData = false;
         partOfDay = "day";
         nameOfCity = "";
+        cur_Condition = "clear";
         for(int i = 0; i < numberOfHours; i++){
             hourlyForecast[i] = new DataOfWeather();
         }
@@ -53,11 +55,16 @@ public class Database {
                     curWeatherData.setTime(obj.getInt("dt"));
                     curWeatherData.setCondition(obj.getJSONObject("weather").getString("main"));
                     curWeatherData.setIdIcon(obj.getJSONObject("weather").getString("icon"));
+
                     if(curWeatherData.getIdIcon().charAt(curWeatherData.getIdIcon().length() - 1) == 'd')
                         partOfDay = "day";
                     else
                         partOfDay = "night";
 
+                    if(obj.getJSONObject("weather").getString("id").charAt(0) == 7)
+                        cur_Condition = "fog";
+                    else
+                        cur_Condition = curWeatherData.getCondition();
                 }
                 else
                     isCorrectData = false;
@@ -147,5 +154,13 @@ public class Database {
 
     public boolean isCorrectData() {
         return isCorrectData;
+    }
+
+    public String getPartOfDay() {
+        return partOfDay;
+    }
+
+    public String getCur_Condition() {
+        return cur_Condition;
     }
 }
