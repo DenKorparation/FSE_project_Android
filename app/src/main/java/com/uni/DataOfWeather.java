@@ -7,6 +7,9 @@ public class DataOfWeather {
     private int pressure;
     private int humidity;
     private int time;
+    private String idIcon;
+    private String condition;
+
 
     public float getTemp() {
         return temp;
@@ -54,5 +57,21 @@ public class DataOfWeather {
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getIdIcon() {
+        return idIcon;
+    }
+
+    public void setIdIcon(String idIcon) {
+        this.idIcon = idIcon;
     }
 }
