@@ -53,15 +53,15 @@ public class Database {
                     curWeatherData.setPressure(obj.getJSONObject("main").getInt("pressure"));
                     curWeatherData.setHumidity(obj.getJSONObject("main").getInt("humidity"));
                     curWeatherData.setTime(obj.getInt("dt"));
-                    curWeatherData.setCondition(obj.getJSONObject("weather").getString("main"));
-                    curWeatherData.setIdIcon(obj.getJSONObject("weather").getString("icon"));
+                    curWeatherData.setCondition(obj.getJSONArray("weather").getJSONObject(0).getString("main"));
+                    curWeatherData.setIdIcon(obj.getJSONArray("weather").getJSONObject(0).getString("icon"));
 
                     if(curWeatherData.getIdIcon().charAt(curWeatherData.getIdIcon().length() - 1) == 'd')
                         partOfDay = "day";
                     else
                         partOfDay = "night";
 
-                    if(obj.getJSONObject("weather").getString("id").charAt(0) == 7)
+                    if(String.valueOf(obj.getJSONArray("weather").getJSONObject(0).getInt("id")).charAt(0) == '7')
                         cur_Condition = "fog";
                     else
                         cur_Condition = curWeatherData.getCondition();
@@ -89,8 +89,8 @@ public class Database {
                         hourlyForecast[i].setPressure(list.getJSONObject(i).getJSONObject("main").getInt("pressure"));
                         hourlyForecast[i].setHumidity(list.getJSONObject(i).getJSONObject("main").getInt("humidity"));
                         hourlyForecast[i].setTime(list.getJSONObject(i).getInt("dt"));
-                        hourlyForecast[i].setCondition(obj.getJSONObject("weather").getString("main"));
-                        hourlyForecast[i].setIdIcon(obj.getJSONObject("weather").getString("icon"));
+                        hourlyForecast[i].setCondition(list.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("main"));
+                        hourlyForecast[i].setIdIcon(list.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("icon"));
                     }
                 }else
                     isCorrectData = false;
