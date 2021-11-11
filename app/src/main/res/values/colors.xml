@@ -11,5 +11,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="black_shade_1">#292036</color>
     <color name="TextColorHint">#ccc</color>
+    <color name="colorback">#000</color>
 
 </resources>
