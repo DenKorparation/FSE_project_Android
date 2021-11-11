@@ -78,13 +78,12 @@ public class MainActivity extends AppCompatActivity {
             if (database.isCorrectData())
             {result_info.setText(database.getNameOfCity() + "\n" + "Температура: " + Float.toString(database.getCurWeatherData().getTemp())+"°C");
                 feelslike.setText( "Температура ощущается как: "+Float.toString(database.getCurWeatherData().getFeelsLikeTemp())+"°C");
-                windspeed.setText("Скорость ветра: "+Float.toString(database.getCurWeatherData().getWindSpeed())+" km/h");
-                pressure.setText("Давление: "+Float.toString(database.getCurWeatherData().getPressure())+" Pa");
+                windspeed.setText("Скорость ветра: "+Float.toString(database.getCurWeatherData().getWindSpeed())+" m/s");
+                pressure.setText("Давление: "+Float.toString(database.getCurWeatherData().getPressure())+" GPa");
                 }
 
             else
                 result_info.setText("Incorrect data");
-                        ;
 
         }
 
