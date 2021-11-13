@@ -5,10 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import org.json.JSONObject;
@@ -29,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView feelslike;
     private TextView windspeed;
     private TextView pressure;
+    private ImageView icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         feelslike = findViewById(R.id.feelslike);
         windspeed = findViewById(R.id.windspeed);
         pressure = findViewById(R.id.pressure);
-
+        icon = findViewById(R.id.icon);
 
         main_btn.setOnClickListener(new View.OnClickListener() {
             @Override
