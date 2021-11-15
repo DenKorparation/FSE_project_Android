@@ -7,8 +7,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity"
-        android:background="@color/colorback">
+        android:background="@drawable/backgro"
+        android:backgroundTintMode="screen"
+        android:backgroundTint="#0F061E">
 
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="306dp"
+            android:layout_height="260dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="359dp"
+            android:layout_marginStart="105dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/rv_blocks"/>
 
     <TextView
             android:text="@string/logo"
@@ -17,7 +29,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/logo"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="30sp"
             android:fontFamily="sans-serif-black"/>
 
@@ -26,8 +38,8 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:hint="@string/hint"
-            android:textColor="@color/white"
-            android:textColorHint="@color/TextColorHint"
+            android:textColor="@color/black_shade_1"
+            android:textColorHint="@color/black_shade_1"
             android:layout_below="@id/logo"
             android:backgroundTint="@color/teal_200"
             android:layout_marginTop="16dp"
@@ -55,8 +67,8 @@
             android:id="@+id/resultinfo"
             android:textAlignment="center"
             android:layout_below="@id/main_button"
-            android:textColor="@color/TextColorHint"
-            android:textSize="15sp"
+            android:textColor="@color/black_shade_1"
+            android:textSize="25sp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"/>
 
@@ -67,8 +79,8 @@
             android:id="@+id/feelslike"
             android:textAlignment="center"
             android:layout_below="@id/main_button"
-            android:textColor="@color/TextColorHint"
-            android:textSize="15sp"
+            android:textColor="@color/black_shade_1"
+            android:textSize="25sp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="-2dp"
             android:layout_centerVertical="true"
@@ -82,8 +94,8 @@
             android:id="@+id/windspeed"
             android:textAlignment="center"
             android:layout_below="@id/main_button"
-            android:textColor="@color/TextColorHint"
-            android:textSize="15sp"
+            android:textColor="@color/black_shade_1"
+            android:textSize="25sp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"/>
 
@@ -94,18 +106,23 @@
             android:id="@+id/pressure"
             android:textAlignment="center"
             android:layout_below="@id/main_button"
-            android:textColor="@color/TextColorHint"
-            android:textSize="15sp"
+            android:textColor="@color/black_shade_1"
+            android:textSize="25sp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="-5dp"/>
+
     <ImageView
             android:id="@+id/icon"
             android:layout_width="394dp"
             android:layout_height="131dp"
             android:background="#00FA2255"
-            android:src="@drawable/ic_cloudy" android:layout_alignParentStart="true"
-            android:layout_marginTop="533dp" android:layout_marginStart="-126dp" android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" android:layout_alignParentBottom="true"
+
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="533dp"
+            android:layout_marginStart="-126dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginBottom="-5dp"/>
 
 </RelativeLayout>
