@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import static com.uni.MainActivity.database;
+
 public class weatherRVAdapter extends RecyclerView.Adapter<weatherRVAdapter.WeatherViewHolder>{
 
     private static int viewHolderCount;
@@ -26,7 +28,7 @@ public class weatherRVAdapter extends RecyclerView.Adapter<weatherRVAdapter.Weat
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layoutIdForListItem, parent,false);
         WeatherViewHolder viewHolder = new WeatherViewHolder(view);
-
+        viewHolderCount ++;
         return viewHolder;
 
     }
@@ -46,10 +48,8 @@ public class weatherRVAdapter extends RecyclerView.Adapter<weatherRVAdapter.Weat
     TextView time;
     ImageView icon;
     TextView speed;
-    Database database;
     public WeatherViewHolder(@NonNull View itemView) {
         super(itemView);
-        database = new Database();
         temp = itemView.findViewById(R.id.idTVTemperature);
         time = itemView.findViewById(R.id.idTVTime);
         icon = itemView.findViewById(R.id.idIVCondition);
@@ -57,7 +57,9 @@ public class weatherRVAdapter extends RecyclerView.Adapter<weatherRVAdapter.Weat
 
     }
     void bind(int listIndex){
-        temp.setText("MMM" );
+        temp.setText(Float.toString(database.getHourlyForecast()[listIndex].getTemp()));
+        icon.setImageResource(MainActivity.map.get(MainActivity.database.getHourlyForecast()[listIndex].getIdIcon()));
+        time.setText(Float.toString(database.getHourlyForecast()[listIndex].getTime()));
     }
 }
 }

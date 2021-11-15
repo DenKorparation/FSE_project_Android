@@ -26,8 +26,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static Database database;
+
     private RecyclerView weatherlist;
-    private Database database;
     private EditText user_field;
     private Button main_btn;
     private TextView result_info;
@@ -36,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView pressure;
     private ImageView icon;
     public String idIcons;
-    private Map<String, Integer> map = new HashMap<String, Integer>();
+    public static Map<String, Integer> map = new HashMap<String, Integer>();
     private weatherRVAdapter weatherRvAdapter;
+    private LinearLayoutManager layoutManager;
 
 
     @Override
@@ -47,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         database = new Database();
         weatherlist = findViewById(R.id.rv_blocks);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        weatherlist.setLayoutManager(layoutManager);
         user_field = findViewById(R.id.user_field);
         main_btn = findViewById(R.id.main_button);
         result_info = findViewById(R.id.resultinfo);
@@ -56,9 +56,8 @@ public class MainActivity extends AppCompatActivity {
         windspeed = findViewById(R.id.windspeed);
         pressure = findViewById(R.id.pressure);
         icon = findViewById(R.id.icon);
-        weatherRvAdapter = new weatherRVAdapter(10);
-        weatherlist.setAdapter(weatherRvAdapter);
 
+        layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
 
         map.put("01d", R.drawable.ic__1d);
         map.put("01n", R.drawable.ic__1n);
@@ -79,10 +78,6 @@ public class MainActivity extends AppCompatActivity {
         map.put("50d", R.drawable.ic__50d);
         map.put("50n", R.drawable.ic__50n);
 
-
-
-
-
         main_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     database.setNameOfCity(user_field.getText().toString().trim());
                     new Request().execute();
-                    //System.out.println("|" + user_field.getText().toString().trim() + "|  " + database.getCurWeatherData().getTemp());
                     //icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
                 }
             }
@@ -115,7 +109,17 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if (database.isCorrectData())
-            {result_info.setText(database.getNameOfCity() + "\n" + Float.toString(database.getCurWeatherData().getTemp())+"°C");
+            {
+                weatherlist.setLayoutManager(layoutManager);
+                weatherlist.setHasFixedSize(true);
+                weatherRvAdapter = new weatherRVAdapter(48);
+                weatherlist.setAdapter(weatherRvAdapter);
+                weatherRvAdapter.notifyItemChanged(0);
+                weatherRvAdapter.notifyItemChanged(1);
+                weatherRvAdapter.notifyItemChanged(2);
+                weatherRvAdapter.notifyItemChanged(3);
+                weatherRvAdapter.notifyItemChanged(4);
+                result_info.setText(database.getNameOfCity() + "\n" + Float.toString(database.getCurWeatherData().getTemp())+"°C");
                 feelslike.setText( "Ощущается как: "+Float.toString(database.getCurWeatherData().getFeelsLikeTemp())+"°C");
                 windspeed.setText(Float.toString(database.getCurWeatherData().getWindSpeed())+" m/s");
                 pressure.setText(Float.toString(database.getCurWeatherData().getPressure())+" GPa");
