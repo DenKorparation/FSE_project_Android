@@ -2,6 +2,18 @@ plugins {
     id 'com.android.application'
 }
 
+plugins {
+    id "org.sonarqube" version "3.3"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "DenKorparation_Android_coverage"
+        property "sonar.organization", "universityteam"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
