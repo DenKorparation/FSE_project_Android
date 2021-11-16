@@ -1,12 +1,14 @@
 package com.uni;
 
+import java.util.Date;
+
 public class DataOfWeather {
     private float temp;
     private float feelsLikeTemp;
     private float windSpeed;
     private int pressure;
     private int humidity;
-    private int time;
+    private Date time;
     private String idIcon;
     private String condition;
 
@@ -51,11 +53,11 @@ public class DataOfWeather {
         this.humidity = humidity;
     }
 
-    public int getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

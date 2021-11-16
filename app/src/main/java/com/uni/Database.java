@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,7 +53,7 @@ public class Database {
                     curWeatherData.setWindSpeed((float)obj.getJSONObject("wind").getDouble("speed"));
                     curWeatherData.setPressure(obj.getJSONObject("main").getInt("pressure"));
                     curWeatherData.setHumidity(obj.getJSONObject("main").getInt("humidity"));
-                    curWeatherData.setTime(obj.getInt("dt"));
+                    curWeatherData.setTime(new Date(obj.getInt("dt")));
                     curWeatherData.setCondition(obj.getJSONArray("weather").getJSONObject(0).getString("main"));
                     curWeatherData.setIdIcon(obj.getJSONArray("weather").getJSONObject(0).getString("icon"));
 
@@ -88,7 +89,7 @@ public class Database {
                         hourlyForecast[i].setWindSpeed((float)list.getJSONObject(i).getJSONObject("wind").getDouble("speed"));
                         hourlyForecast[i].setPressure(list.getJSONObject(i).getJSONObject("main").getInt("pressure"));
                         hourlyForecast[i].setHumidity(list.getJSONObject(i).getJSONObject("main").getInt("humidity"));
-                        hourlyForecast[i].setTime(list.getJSONObject(i).getInt("dt"));
+                        hourlyForecast[i].setTime(new Date(list.getJSONObject(i).getInt("dt")));
                         hourlyForecast[i].setCondition(list.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("main"));
                         hourlyForecast[i].setIdIcon(list.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("icon"));
                     }
