@@ -70,8 +70,10 @@ public class Database {
                 else
                     isCorrectData = false;
             }
+            else
+                isCorrectData = false;
         } catch (Exception e){
-            System.out.println("Error");
+            isCorrectData = false;
         }
     }
 
@@ -96,8 +98,11 @@ public class Database {
                 }else
                     isCorrectData = false;
             }
+            else
+                isCorrectData = false;
         } catch (Exception e){
             e.printStackTrace();
+            isCorrectData = false;
         }
     }
 
