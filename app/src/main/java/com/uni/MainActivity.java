@@ -1,11 +1,13 @@
 package com.uni;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -89,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
                     new Request().execute();
                     //icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
                 }
+
+                InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
     }
@@ -114,11 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 weatherlist.setHasFixedSize(true);
                 weatherRvAdapter = new weatherRVAdapter(48);
                 weatherlist.setAdapter(weatherRvAdapter);
-                weatherRvAdapter.notifyItemChanged(0);
-                weatherRvAdapter.notifyItemChanged(1);
-                weatherRvAdapter.notifyItemChanged(2);
-                weatherRvAdapter.notifyItemChanged(3);
-                weatherRvAdapter.notifyItemChanged(4);
+                weatherRvAdapter.notifyItemChanged(0, 47);
                 result_info.setText(database.getNameOfCity() + "\n" + Float.toString(database.getCurWeatherData().getTemp())+"°C");
                 feelslike.setText( "Ощущается как: "+Float.toString(database.getCurWeatherData().getFeelsLikeTemp())+"°C");
                 windspeed.setText(Float.toString(database.getCurWeatherData().getWindSpeed())+" m/s");
