@@ -1,6 +1,7 @@
 package com.uni;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -25,24 +26,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.uni.ScrollingActivity.*;
 
 public class MainActivity extends AppCompatActivity {
 
     public static Database database;
-
-    private RecyclerView weatherlist;
-    private EditText user_field;
+    public static EditText user_field;
     private Button main_btn;
-    private TextView result_info;
-    private TextView feelslike;
-    private TextView windspeed;
-    private TextView pressure;
-    private ImageView icon;
-    public String idIcons;
-    public static Map<String, Integer> map = new HashMap<String, Integer>();
-    private weatherRVAdapter weatherRvAdapter;
-    private LinearLayoutManager layoutManager;
-
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,88 +41,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         database = new Database();
-        weatherlist = findViewById(R.id.rv_blocks);
+        textView = findViewById(R.id.textView);
         user_field = findViewById(R.id.user_field);
         main_btn = findViewById(R.id.main_button);
-        result_info = findViewById(R.id.resultinfo);
-        feelslike = findViewById(R.id.feelslike);
-        windspeed = findViewById(R.id.windspeed);
-        pressure = findViewById(R.id.pressure);
-        icon = findViewById(R.id.icon);
-
-        layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-
-        map.put("01d", R.drawable.ic__1d);
-        map.put("01n", R.drawable.ic__1n);
-        map.put("02d", R.drawable.ic__2d);
-        map.put("02n", R.drawable.ic__2n);
-        map.put("03d", R.drawable.ic__3d);
-        map.put("03n", R.drawable.ic__3n);
-        map.put("04d", R.drawable.ic__4d);
-        map.put("04n", R.drawable.ic__4n);
-        map.put("09d", R.drawable.ic__9d);
-        map.put("09n", R.drawable.ic__9n);
-        map.put("10d", R.drawable.ic__10d);
-        map.put("10n", R.drawable.ic__10n);
-        map.put("11d", R.drawable.ic__11d);
-        map.put("11n", R.drawable.ic__11n);
-        map.put("13d", R.drawable.ic__13d);
-        map.put("13n", R.drawable.ic__13n);
-        map.put("50d", R.drawable.ic__50d);
-        map.put("50n", R.drawable.ic__50n);
 
         main_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(user_field.getText().toString().trim().equals(""))
-                    Toast.makeText(MainActivity.this, R.string.no_user_input, Toast.LENGTH_LONG).show();
-                else{
-                    database.setNameOfCity(user_field.getText().toString().trim());
-                    new Request().execute();
+
+                if (MainActivity.user_field.getText().toString().trim().equals("")) {
+                    //Toast.makeText(this, R.string.no_user_input, Toast.LENGTH_LONG).show();
+                }
+                else {
+                    database.setNameOfCity(MainActivity.user_field.getText().toString().trim());
+                    openScrollingActivity();
+
                     //icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
                 }
+
 
                 InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
     }
-    private class Request extends AsyncTask<String, String, String> {
+    public void openScrollingActivity(){
 
-        protected void onPreExecute() {
-            super.onPreExecute();
-            result_info.setText("Ожидайте...");
-        }
+        Intent intent = new Intent(this, ScrollingActivity.class);
+        startActivity(intent);
+    }
 
-        @Override
-        protected String doInBackground(String... strings) {
-            database.request();
-            return null;
-        }
 
-        //@Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            if (database.isCorrectData())
-            {
-                weatherlist.setLayoutManager(layoutManager);
-                weatherlist.setHasFixedSize(true);
-                weatherRvAdapter = new weatherRVAdapter(48);
-                weatherlist.setAdapter(weatherRvAdapter);
-                weatherRvAdapter.notifyItemChanged(0, 47);
-                result_info.setText(database.getNameOfCity() + "\n" + Float.toString(database.getCurWeatherData().getTemp())+"°C");
-                feelslike.setText( "Ощущается как: "+Float.toString(database.getCurWeatherData().getFeelsLikeTemp())+"°C");
-                windspeed.setText(Float.toString(database.getCurWeatherData().getWindSpeed())+" m/s");
-                pressure.setText(Float.toString(database.getCurWeatherData().getPressure())+" GPa");
-                icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
-                }
+    }
 
-            else
-                result_info.setText("Incorrect data");
-
-        }
-
-        }
-
-}

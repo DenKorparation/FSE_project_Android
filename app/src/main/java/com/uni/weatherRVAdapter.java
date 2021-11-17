@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.TimeZone;
 
+
 import static com.uni.MainActivity.database;
 
 public class weatherRVAdapter extends RecyclerView.Adapter<weatherRVAdapter.WeatherViewHolder>{
@@ -62,7 +63,7 @@ public class weatherRVAdapter extends RecyclerView.Adapter<weatherRVAdapter.Weat
 
         void bind(int listIndex) {
             temp.setText(Float.toString(database.getHourlyForecast()[listIndex].getTemp()));
-            icon.setImageResource(MainActivity.map.get(MainActivity.database.getHourlyForecast()[listIndex].getIdIcon()));
+            icon.setImageResource(ScrollingActivity.map.get(database.getHourlyForecast()[listIndex].getIdIcon()));
             SimpleDateFormat sdf = new SimpleDateFormat("dd MM\n HH:mm z"); // какой формат нужен, выбераем
             sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
             time.setText(sdf.format(database.getHourlyForecast()[listIndex].getTime()));
