@@ -53,7 +53,7 @@ public class Database {
                     curWeatherData.setWindSpeed((float)obj.getJSONObject("wind").getDouble("speed"));
                     curWeatherData.setPressure(obj.getJSONObject("main").getInt("pressure"));
                     curWeatherData.setHumidity(obj.getJSONObject("main").getInt("humidity"));
-                    curWeatherData.setTime(new Date(obj.getInt("dt")));
+                    curWeatherData.setTime(new Date(obj.getInt("dt") * 1000L));
                     curWeatherData.setCondition(obj.getJSONArray("weather").getJSONObject(0).getString("main"));
                     curWeatherData.setIdIcon(obj.getJSONArray("weather").getJSONObject(0).getString("icon"));
 
