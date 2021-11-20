@@ -151,9 +151,9 @@ public class ScrollingActivity extends AppCompatActivity {
 
                 weatherlist2.setLayoutManager(layoutManager2);
                 weatherlist2.setHasFixedSize(true);
-                weatherRVAdapter2 = new weatherRVAdapter2(10);
+                weatherRVAdapter2 = new weatherRVAdapter2(7);
                 weatherlist2.setAdapter(weatherRVAdapter2);
-                weatherRVAdapter2.notifyItemChanged(0,9);
+                weatherRVAdapter2.notifyItemChanged(0,6);
 
                 ScrollingActivity.result_info.setText(Float.toString(database.getCurWeatherData().getTemp()) + "°C");
                 feelslike.setText(Float.toString(database.getCurWeatherData().getFeelsLikeTemp()) + "°C");
