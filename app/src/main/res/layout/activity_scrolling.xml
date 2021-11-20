@@ -14,94 +14,135 @@
 
         <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                
+                android:orientation="vertical" android:layout_height="3000dp">
 
             <TextView
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="15dp"
-                    android:layout_height="67dp"
-                    android:id="@+id/resultinfo"
-                    android:textAlignment="center"
-                    android:layout_below="@id/main_button"
-                    android:textColor="@color/black_shade_1"
-                    android:textSize="25sp"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="0dp"
-                    android:text="dfhfgfyyffgyfgfy"/>
+                    android:layout_width="177dp"
 
-            <ImageView
-                    android:id="@+id/icon"
-                    android:layout_width="537dp"
-                    android:layout_height="136dp"
-                    android:background="#00FA2255"
-
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="150dp"
-                    android:layout_marginStart="-146dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="373dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="55dp"
-                    app:srcCompat="@drawable/ic__10d"/>
-
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="216dp"
-                    android:layout_height="67dp"
-                    android:id="@+id/pressure"
-                    android:textAlignment="center"
-                    android:layout_below="@id/main_button"
-                    android:textColor="@color/black_shade_1"
-                    android:textSize="25sp"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="-5dp"
-                    android:text="iopoipiopoip"/>
-
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="82dp"
-                    android:layout_height="67dp"
+                    android:layout_height="75dp"
                     android:id="@+id/feelslike"
                     android:textAlignment="center"
-                    android:layout_below="@id/main_button"
+
                     android:textColor="@color/black_shade_1"
                     android:textSize="25sp"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="-2dp"
-                    android:layout_centerVertical="true"
+
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="0dp"
-                    android:text="tutyututyutyut"/>
+
+
+                    android:layout_marginTop="145dp"
+                    android:layout_marginStart="78dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="154dp"/>
 
             <TextView
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="148dp"
-                    android:layout_height="67dp"
+                    android:layout_width="163dp"
+                    android:layout_height="66dp"
                     android:id="@+id/windspeed"
                     android:textAlignment="center"
-                    android:layout_below="@id/main_button"
                     android:textColor="@color/black_shade_1"
                     android:textSize="25sp"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="0dp"
-                    android:text="fyfgyfgjnkhjiyg"/>
+                    android:layout_marginStart="192dp"
+                    android:layout_marginTop="150dp"
+                    android:layout_alignParentTop="true"/>
+
+            <TextView
+                    android:layout_width="135dp"
+                    android:layout_height="61dp"
+                    android:id="@+id/pressure"
+                    android:textAlignment="center"
+
+                    android:textColor="@color/black_shade_1"
+                    android:textSize="25sp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="318dp"
+                    android:layout_marginTop="151dp"
+                    android:layout_alignParentTop="true"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="344dp"
-                    android:layout_height="237dp"
+                    android:layout_width="390dp"
+                    android:layout_height="251dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="11dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="543dp"
+                    android:id="@+id/rv_blocks1"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="394dp"
+                    android:layout_height="235dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="521dp"
-                    android:layout_marginStart="29dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="-99dp"
+                    android:layout_marginTop="239dp"
+                    android:layout_marginStart="-6dp"
                     android:id="@+id/rv_blocks"
                     android:layout_centerHorizontal="true">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="85dp"
+                    android:layout_height="69dp"
+                    android:background="#00FA2255"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentEnd="true"
+                    app:srcCompat="@drawable/ic__10d"
+                    android:layout_marginStart="262dp"
+                    android:layout_marginEnd="64dp"
+                    android:layout_marginTop="66dp"
+                    android:layout_alignParentTop="true"/>
+
+            <TextView
+                    android:layout_width="175dp"
+                    android:layout_height="62dp"
+                    android:id="@+id/resultinfo"
+                    android:textAlignment="center"
+                    android:textColor="@color/black_shade_1"
+                    android:textSize="25sp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="-5dp"
+
+                    android:layout_marginTop="145dp"
+                    android:layout_alignParentTop="true"/>
+
+            <EditText
+                    android:hint="@string/hint"
+                    android:layout_width="207dp"
+                    android:layout_height="97dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="-2dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="24dp"
+                    android:id="@+id/textView2"/>
+
+            <Button
+                    android:text="Узнать погоду"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="49dp"
+                    android:layout_marginTop="17dp"
+                    android:id="@+id/button"/>
+
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="401dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView4"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="0dp"
+                    android:textSize="50dp"
+
+                    android:layout_marginTop="471dp"
+                    android:layout_alignParentTop="true"
+                    android:textAlignment="center"
+                    android:fontFamily="sans-serif-condensed"/>
 
         </RelativeLayout>
     </ScrollView>

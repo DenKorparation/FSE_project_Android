@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (MainActivity.user_field.getText().toString().trim().equals("")) {
-                    //Toast.makeText(this, R.string.no_user_input, Toast.LENGTH_LONG).show();
+
                 }
                 else {
                     database.setNameOfCity(MainActivity.user_field.getText().toString().trim());

@@ -53,8 +53,14 @@ public class ScrollingActivity extends AppCompatActivity {
     public static String idIcons;
     public static Map<String, Integer> map = new HashMap<String, Integer>();
     public static weatherRVAdapter weatherRvAdapter;
+    public static weatherRVAdapter2 weatherRVAdapter2;
     public static LinearLayoutManager layoutManager;
+    public static LinearLayoutManager layoutManager2;
     public static RecyclerView weatherlist;
+    public static RecyclerView weatherlist2;
+    private Button button;
+    private EditText textView2;
+    private TextView textView4;
   //  private ActivityScrollingBinding binding;
     private int id;
 
@@ -64,16 +70,18 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
 
 
-
+        weatherlist2 = findViewById(R.id.rv_blocks1);
         weatherlist = findViewById(R.id.rv_blocks);
         result_info = findViewById(R.id.resultinfo);
         feelslike = findViewById(R.id.feelslike);
         windspeed = findViewById(R.id.windspeed);
         pressure = findViewById(R.id.pressure);
         icon = findViewById(R.id.icon);
-
+        button = findViewById(R.id.button);
+        textView2 = findViewById(R.id.textView2);
+        layoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-
+        textView4 = findViewById(R.id.textView4);
         map.put("01d", R.drawable.ic__1d);
         map.put("01n", R.drawable.ic__1n);
         map.put("02d", R.drawable.ic__2d);
@@ -93,6 +101,26 @@ public class ScrollingActivity extends AppCompatActivity {
         map.put("50d", R.drawable.ic__50d);
         map.put("50n", R.drawable.ic__50n);
         new ScrollingActivity.Request().execute();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (textView2.getText().toString().trim().equals("")) {
+                    Toast.makeText(ScrollingActivity.this, R.string.no_user_input, Toast.LENGTH_LONG).show();
+                }
+                else {
+                    database.setNameOfCity(textView2.getText().toString().trim());
+                    new Request().execute();
+
+                    //icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
+                }
+
+
+                InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        });
     }
 
 
@@ -119,11 +147,19 @@ public class ScrollingActivity extends AppCompatActivity {
                 weatherRvAdapter = new weatherRVAdapter(48);
                 weatherlist.setAdapter(weatherRvAdapter);
                 weatherRvAdapter.notifyItemChanged(0, 47);
-                ScrollingActivity.result_info.setText(database.getNameOfCity() + "\n" + Float.toString(database.getCurWeatherData().getTemp()) + "°C");
-                feelslike.setText("Ощущается как: " + Float.toString(database.getCurWeatherData().getFeelsLikeTemp()) + "°C");
+
+
+                weatherlist2.setLayoutManager(layoutManager2);
+                weatherlist2.setHasFixedSize(true);
+                weatherlist2.setAdapter(weatherRVAdapter2);
+                weatherRVAdapter2 = new weatherRVAdapter2(10);
+                weatherRVAdapter2.notifyItemChanged(0,9);
+                ScrollingActivity.result_info.setText(Float.toString(database.getCurWeatherData().getTemp()) + "°C");
+                feelslike.setText(Float.toString(database.getCurWeatherData().getFeelsLikeTemp()) + "°C");
                 windspeed.setText(Float.toString(database.getCurWeatherData().getWindSpeed()) + " m/s");
                 pressure.setText(Float.toString(database.getCurWeatherData().getPressure()) + " GPa");
                 icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
+                textView4.setText(database.getNameOfCity());
             } else
                 result_info.setText("Incorrect data");
 
