@@ -15,6 +15,7 @@ import org.json.JSONObject;
 public class Database {
     private static final int numberOfHours = 48;
     private static final int numberOfDays = 7;
+    private  static  final String API_KEYS = "c76548e17d6b42b99e631401cd0e0f75";
     private DataOfWeather curWeatherData = new DataOfWeather();
     private DataOfWeather[] hourlyForecast = new DataOfWeather [numberOfHours];
     private DataOfWeather[] dailyForecast = new DataOfWeather[numberOfDays];
@@ -36,11 +37,15 @@ public class Database {
         }
     }
 
-    public void request()
-    {
-        reqCurWeather("https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&units=metric&appid=c76548e17d6b42b99e631401cd0e0f75");
-        reqHourlyForecast("https://pro.openweathermap.org/data/2.5/forecast/hourly?q=" + nameOfCity + "&cnt=48&units=metric&appid=c76548e17d6b42b99e631401cd0e0f75");
+    public void request() {
+
+        reqCurWeather("https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&units=metric&appid=" + API_KEYS);
+        if (isCorrectData) {
+            reqHourlyForecast("https://pro.openweathermap.org/data/2.5/forecast/hourly?q=" + nameOfCity + "&cnt=48&units=metric&appid=" + API_KEYS);
+            reqDailyForecast("https://api.openweathermap.org/data/2.5/forecast/daily?q=" + nameOfCity + "&cnt=7&units=metric&appid=" + API_KEYS);
+        }
     }
+
     private void reqCurWeather(String url){
         try {
             isCorrectData = true;
@@ -79,7 +84,6 @@ public class Database {
 
     private void reqHourlyForecast(String url){
         try{
-            isCorrectData = true;
             String output = getUrlContent(url);
             if(!output.isEmpty()){
                 JSONObject obj = new JSONObject(output);
@@ -103,10 +107,38 @@ public class Database {
             else
                 isCorrectData = false;
         } catch (Exception e){
-            e.printStackTrace();
             isCorrectData = false;
         }
     }
+
+    private void reqDailyForecast(String url){
+        try{
+            String output = getUrlContent(url);
+            if(!output.isEmpty()){
+                JSONObject obj = new JSONObject(output);
+                if(obj.getInt("cod") != 404) {
+                    JSONArray list = obj.getJSONArray("list");
+                    for (int i = 0; i < numberOfDays; i++) {
+                        dailyForecast[i].setTemp((float)list.getJSONObject(i).getJSONObject("temp").getDouble("eve"));
+                        dailyForecast[i].setFeelsLikeTemp((float)list.getJSONObject(i).getJSONObject("feels_like").getDouble("eve"));
+                        dailyForecast[i].setWindSpeed((float)list.getJSONObject(i).getDouble("speed"));
+                        dailyForecast[i].setPressure(list.getJSONObject(i).getInt("pressure"));
+                        dailyForecast[i].setHumidity(list.getJSONObject(i).getInt("humidity"));
+                        //set time as Date
+                        dailyForecast[i].setTime(new Date((long)list.getJSONObject(i).getInt("dt") * 1000L));
+                        dailyForecast[i].setCondition(list.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("main"));
+                        dailyForecast[i].setIdIcon(list.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("icon"));
+                    }
+                }else
+                    isCorrectData = false;
+            }
+            else
+                isCorrectData = false;
+        } catch (Exception e){
+            isCorrectData = false;
+        }
+    }
+
 
     private static String getUrlContent(String urlAdress) throws IOException {
         HttpURLConnection connection = null;

@@ -60,12 +60,12 @@ public class weatherRVAdapter2 extends RecyclerView.Adapter<weatherRVAdapter2.We
         }
 
         void bind(int listIndex) {
-            temp.setText(Float.toString(database.getHourlyForecast()[listIndex].getTemp()));
-            icon.setImageResource(ScrollingActivity.map.get(database.getHourlyForecast()[listIndex].getIdIcon()));
-            SimpleDateFormat sdf = new SimpleDateFormat("dd MM\n HH:mm z"); // какой формат нужен, выбераем
-            sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
-            time.setText(sdf.format(database.getHourlyForecast()[listIndex].getTime()));
-            speed.setText(Float.toString(database.getHourlyForecast()[listIndex].getWindSpeed()));
+            temp.setText(Float.toString(database.getDailyForecast()[listIndex].getTemp()));
+            icon.setImageResource(ScrollingActivity.map.get(database.getDailyForecast()[listIndex].getIdIcon()));
+            SimpleDateFormat sdf = new SimpleDateFormat("dd\nMMMM"); // какой формат нужен, выбираем
+            //sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
+            time.setText(sdf.format(database.getDailyForecast()[listIndex].getTime()));
+            speed.setText(Float.toString(database.getDailyForecast()[listIndex].getWindSpeed()));
         }
     }
 }
