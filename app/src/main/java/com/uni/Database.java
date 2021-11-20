@@ -28,7 +28,7 @@ public class Database {
         isCorrectData = false;
         partOfDay = "day";
         nameOfCity = "";
-        cur_Condition = "clear";
+        cur_Condition = "Clear";
         for(int i = 0; i < numberOfHours; i++){
             hourlyForecast[i] = new DataOfWeather();
         }
@@ -68,7 +68,7 @@ public class Database {
                         partOfDay = "night";
 
                     if(String.valueOf(obj.getJSONArray("weather").getJSONObject(0).getInt("id")).charAt(0) == '7')
-                        cur_Condition = "fog";
+                        cur_Condition = "Fog";
                     else
                         cur_Condition = curWeatherData.getCondition();
                 }
