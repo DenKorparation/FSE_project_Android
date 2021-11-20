@@ -151,15 +151,17 @@ public class ScrollingActivity extends AppCompatActivity {
 
                 weatherlist2.setLayoutManager(layoutManager2);
                 weatherlist2.setHasFixedSize(true);
-                weatherlist2.setAdapter(weatherRVAdapter2);
                 weatherRVAdapter2 = new weatherRVAdapter2(10);
+                weatherlist2.setAdapter(weatherRVAdapter2);
                 weatherRVAdapter2.notifyItemChanged(0,9);
+
                 ScrollingActivity.result_info.setText(Float.toString(database.getCurWeatherData().getTemp()) + "°C");
                 feelslike.setText(Float.toString(database.getCurWeatherData().getFeelsLikeTemp()) + "°C");
                 windspeed.setText(Float.toString(database.getCurWeatherData().getWindSpeed()) + " m/s");
                 pressure.setText(Float.toString(database.getCurWeatherData().getPressure()) + " GPa");
                 icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
                 textView4.setText(database.getNameOfCity());
+
             } else
                 result_info.setText("Incorrect data");
 

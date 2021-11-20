@@ -15,7 +15,7 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 
-                android:orientation="vertical" android:layout_height="3000dp">
+                android:orientation="vertical" android:layout_height="wrap_content">
 
             <TextView
                     android:layout_width="177dp"
@@ -62,21 +62,20 @@
                     android:layout_alignParentTop="true"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="390dp"
-                    android:layout_height="251dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="11dp"
+                    android:layout_marginStart="0dp"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="543dp"
+                    android:layout_marginTop="491dp"
                     android:id="@+id/rv_blocks1"/>
-
             <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="394dp"
-                    android:layout_height="235dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="178dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="239dp"
-                    android:layout_marginStart="-6dp"
+                    android:layout_marginTop="237dp"
+                    android:layout_marginStart="0dp"
                     android:id="@+id/rv_blocks"
                     android:layout_centerHorizontal="true">
 
@@ -136,10 +135,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView4"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="0dp"
+                    android:layout_marginStart="1dp"
                     android:textSize="50dp"
 
-                    android:layout_marginTop="471dp"
+                    android:layout_marginTop="418dp"
                     android:layout_alignParentTop="true"
                     android:textAlignment="center"
                     android:fontFamily="sans-serif-condensed"/>

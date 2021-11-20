@@ -16,20 +16,20 @@ import static com.uni.MainActivity.database;
 
 public class weatherRVAdapter2 extends RecyclerView.Adapter<weatherRVAdapter2.WeatherViewHolder>{
 
-    private static int viewHolderCount2;
-    private int numberItems2;
-    public weatherRVAdapter2(int numberofItems2){
-        numberItems2 = numberofItems2;
-        viewHolderCount2 = 0;
+    private static int viewHolderCount;
+    private int numberItems;
+    public weatherRVAdapter2(int numberofItems){
+        numberItems = numberofItems;
+        viewHolderCount = 0;
     }
     @Override
     public WeatherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        int layoutIdForListItem = R.layout.weather_rv_item2;
+        int layoutIdForListItem = R.layout.weather_rv_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layoutIdForListItem, parent,false);
         WeatherViewHolder viewHolder = new WeatherViewHolder(view);
-        viewHolderCount2 ++;
+        viewHolderCount ++;
         return viewHolder;
 
     }
@@ -41,31 +41,31 @@ public class weatherRVAdapter2 extends RecyclerView.Adapter<weatherRVAdapter2.We
 
     @Override
     public int getItemCount() {
-        return numberItems2;
+        return numberItems;
     }
 
     class WeatherViewHolder extends RecyclerView.ViewHolder {
-        TextView temp2;
-        TextView time2;
-        ImageView icon2;
-        TextView speed2;
+        TextView temp;
+        TextView time;
+        ImageView icon;
+        TextView speed;
 
         public WeatherViewHolder(@NonNull View itemView) {
             super(itemView);
-            temp2 = itemView.findViewById(R.id.idTVTemperature2);
-            time2 = itemView.findViewById(R.id.idTVTime2);
-            icon2 = itemView.findViewById(R.id.idIVCondition2);
-            speed2 = itemView.findViewById(R.id.idTVWindSpeed2);
+            temp = itemView.findViewById(R.id.idTVTemperature);
+            time = itemView.findViewById(R.id.idTVTime);
+            icon = itemView.findViewById(R.id.idIVCondition);
+            speed = itemView.findViewById(R.id.idTVWindSpeed);
 
         }
 
         void bind(int listIndex) {
-            temp2.setText(Float.toString(database.getHourlyForecast()[listIndex].getTemp()));
-            icon2.setImageResource(ScrollingActivity.map.get(database.getHourlyForecast()[listIndex].getIdIcon()));
+            temp.setText(Float.toString(database.getHourlyForecast()[listIndex].getTemp()));
+            icon.setImageResource(ScrollingActivity.map.get(database.getHourlyForecast()[listIndex].getIdIcon()));
             SimpleDateFormat sdf = new SimpleDateFormat("dd MM\n HH:mm z"); // какой формат нужен, выбераем
             sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
-            time2.setText(sdf.format(database.getHourlyForecast()[listIndex].getTime()));
-            speed2.setText(Float.toString(database.getHourlyForecast()[listIndex].getWindSpeed()));
+            time.setText(sdf.format(database.getHourlyForecast()[listIndex].getTime()));
+            speed.setText(Float.toString(database.getHourlyForecast()[listIndex].getWindSpeed()));
         }
     }
 }
