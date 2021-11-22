@@ -1,42 +1,19 @@
 package com.uni;
 
+import android.annotation.SuppressLint;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.content.Context;
-import android.view.*;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,7 +21,10 @@ import java.util.Map;
 import static com.uni.MainActivity.database;
 
 public class ScrollingActivity extends AppCompatActivity {
-
+    private TextView textView3;
+    private ImageView imageView4;
+    private ImageView imageView3;
+    private ImageView imageView1;
     public static TextView result_info;
     public static TextView feelslike;
     public static TextView windspeed;
@@ -60,16 +40,22 @@ public class ScrollingActivity extends AppCompatActivity {
     public static RecyclerView weatherlist2;
     private Button button;
     private EditText textView2;
+    private ImageView imageView2;
     private TextView textView4;
-  //  private ActivityScrollingBinding binding;
+    private TextView textView5;
+    //  private ActivityScrollingBinding binding;
     private int id;
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
-
-
+        textView5 = findViewById(R.id.textView5);
+        textView3 = findViewById(R.id.textView3);
+        imageView4 = findViewById(R.id.imageView11);
+        imageView2 = findViewById(R.id.imageView9);
+        imageView1 = findViewById(R.id.imageView8);
         weatherlist2 = findViewById(R.id.rv_blocks1);
         weatherlist = findViewById(R.id.rv_blocks);
         result_info = findViewById(R.id.resultinfo);
@@ -79,6 +65,7 @@ public class ScrollingActivity extends AppCompatActivity {
         icon = findViewById(R.id.icon);
         button = findViewById(R.id.button);
         textView2 = findViewById(R.id.textView2);
+        imageView3 = findViewById(R.id.imageView10);
         layoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         textView4 = findViewById(R.id.textView4);
@@ -128,7 +115,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
         protected void onPreExecute() {
             super.onPreExecute();
-            result_info.setText("Ожидайте...");
+            textView4.setText("Ожидайте...");
         }
 
         @Override
@@ -147,25 +134,29 @@ public class ScrollingActivity extends AppCompatActivity {
                 weatherRvAdapter = new weatherRVAdapter(48);
                 weatherlist.setAdapter(weatherRvAdapter);
                 weatherRvAdapter.notifyItemChanged(0, 47);
-
-
+                textView3.setText("Почасовой прогноз");
+                imageView4.setImageResource(R.drawable.ic_thermometer_temperature_svgrepo_com);
                 weatherlist2.setLayoutManager(layoutManager2);
                 weatherlist2.setHasFixedSize(true);
                 weatherRVAdapter2 = new weatherRVAdapter2(7);
                 weatherlist2.setAdapter(weatherRVAdapter2);
                 weatherRVAdapter2.notifyItemChanged(0,6);
-
+                imageView2.setImageResource(R.drawable.windspeed);
                 ScrollingActivity.result_info.setText(Float.toString(database.getCurWeatherData().getTemp()) + "°C");
                 feelslike.setText(Float.toString(database.getCurWeatherData().getFeelsLikeTemp()) + "°C");
                 windspeed.setText(Float.toString(database.getCurWeatherData().getWindSpeed()) + " m/s");
                 pressure.setText(Float.toString(database.getCurWeatherData().getPressure()) + " GPa");
                 icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
                 textView4.setText(database.getNameOfCity());
-
+                imageView3.setImageResource(R.drawable.ic_temp);
+                imageView1.setImageResource(R.drawable.pressure);
+                textView5.setText("Подневный прогноз");
             } else
-                result_info.setText("Incorrect data");
+                textView4.setText("Incorrect data");
 
         }
+
+
 
 
     }

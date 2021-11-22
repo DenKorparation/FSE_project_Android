@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     database.setNameOfCity(MainActivity.user_field.getText().toString().trim());
+
                     openScrollingActivity();
 
                     //icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public void openScrollingActivity(){
 
         Intent intent = new Intent(this, ScrollingActivity.class);
