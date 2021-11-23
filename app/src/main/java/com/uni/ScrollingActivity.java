@@ -21,6 +21,7 @@ import java.util.Map;
 import static com.uni.MainActivity.database;
 
 public class ScrollingActivity extends AppCompatActivity {
+    private TextView textview6;
     private TextView textView3;
     private ImageView imageView4;
     private ImageView imageView3;
@@ -51,6 +52,7 @@ public class ScrollingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
+        textview6 = findViewById(R.id.textView6);
         textView5 = findViewById(R.id.textView5);
         textView3 = findViewById(R.id.textView3);
         imageView4 = findViewById(R.id.imageView11);
@@ -137,6 +139,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 textView3.setText("Почасовой прогноз");
                 imageView4.setImageResource(R.drawable.ic_thermometer_temperature_svgrepo_com);
                 weatherlist2.setLayoutManager(layoutManager2);
+                textview6.setText("Ощущается как");
                 weatherlist2.setHasFixedSize(true);
                 weatherRVAdapter2 = new weatherRVAdapter2(7);
                 weatherlist2.setAdapter(weatherRVAdapter2);
@@ -150,7 +153,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 textView4.setText(database.getNameOfCity());
                 imageView3.setImageResource(R.drawable.ic_temp);
                 imageView1.setImageResource(R.drawable.pressure);
-                textView5.setText("Подневный прогноз");
+                textView5.setText("Ежедневный прогноз");
             } else
                 textView4.setText("Incorrect data");
 
