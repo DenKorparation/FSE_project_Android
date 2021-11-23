@@ -4,21 +4,24 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="1000dp"
         android:fitsSystemWindows="true"
         tools:context=".ScrollingActivity"
-        android:background="@drawable/backgro"
+
         android:backgroundTintMode="screen"
         android:backgroundTint="#0F061E">
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            >
 
         <RelativeLayout
                 android:layout_width="match_parent"
-                
-                android:orientation="vertical" android:layout_height="wrap_content">
+
+                android:orientation="vertical"
+                android:layout_height="2000dp">
 
             <TextView
                     android:fontFamily="sans-serif-black"
@@ -48,11 +51,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="7dp"
+                    android:layout_marginStart="3dp"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="508dp"
+                    android:layout_marginTop="505dp"
                     android:id="@+id/rv_blocks1"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -235,6 +238,96 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="140dp"
                     android:id="@+id/textView6"/>
+
+            <ImageView
+                    android:layout_width="261dp"
+                    android:layout_height="294dp"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="13dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="707dp"
+                    android:id="@+id/map1"/>
+
+            <ImageView
+                    android:layout_width="263dp"
+                    android:layout_height="296dp"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="11dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="705dp"
+                    android:id="@+id/map2"/>
+
+            <Button
+                    android:text="Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="709dp"
+                    android:id="@+id/button2"/>
+
+            <Button
+                    android:text="Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="808dp"
+                    android:id="@+id/button3"/>
+
+            <Button
+                    android:text="Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="858dp"
+                    android:id="@+id/button5"/>
+
+            <Button
+                    android:text="Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="911dp"
+                    android:id="@+id/button6"/>
+
+            <Button
+                    android:text="Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="758dp"
+                    android:id="@+id/button4"/>
+
+            <Button
+                    android:text="+"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="41dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="1015dp"
+                    android:id="@+id/button8"/>
+
+            <Button
+                    android:text="-"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="158dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="1014dp"
+                    android:id="@+id/button9"/>
 
         </RelativeLayout>
     </ScrollView>
