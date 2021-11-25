@@ -25,7 +25,7 @@ public class weatherRVAdapter2 extends RecyclerView.Adapter<weatherRVAdapter2.We
     @Override
     public WeatherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        int layoutIdForListItem = R.layout.weather_rv_item;
+        int layoutIdForListItem = R.layout.weather_rv_item2;
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layoutIdForListItem, parent,false);
         WeatherViewHolder viewHolder = new WeatherViewHolder(view);
@@ -45,14 +45,15 @@ public class weatherRVAdapter2 extends RecyclerView.Adapter<weatherRVAdapter2.We
     }
 
     class WeatherViewHolder extends RecyclerView.ViewHolder {
-        TextView temp;
+        TextView tempday;
         TextView time;
         ImageView icon;
         TextView speed;
-
+        TextView tempnight;
         public WeatherViewHolder(@NonNull View itemView) {
             super(itemView);
-            temp = itemView.findViewById(R.id.idTVTemperature);
+            tempday = itemView.findViewById(R.id.idTVTemperatureday);
+            tempnight = itemView.findViewById(R.id.idTVTemperaturenignt);
             time = itemView.findViewById(R.id.idTVTime);
             icon = itemView.findViewById(R.id.idIVCondition);
             speed = itemView.findViewById(R.id.idTVWindSpeed);
@@ -60,12 +61,13 @@ public class weatherRVAdapter2 extends RecyclerView.Adapter<weatherRVAdapter2.We
         }
 
         void bind(int listIndex) {
-            temp.setText(Float.toString(database.getDailyForecast()[listIndex].getTemp()));
+            tempday.setText(Float.toString(database.getDailyForecast()[listIndex].getTempDay())+ "°C");
+            tempnight.setText(Float.toString(database.getDailyForecast()[listIndex].getTempNight())+"°C");
             icon.setImageResource(ScrollingActivity.map.get(database.getDailyForecast()[listIndex].getIdIcon()));
             SimpleDateFormat sdf = new SimpleDateFormat("dd\nMMMM"); // какой формат нужен, выбираем
             //sdf.setTimeZone(TimeZone.getTimeZone("GMT+3")); // если нужно даем таймзон
             time.setText(sdf.format(database.getDailyForecast()[listIndex].getTime()));
-            speed.setText(Float.toString(database.getDailyForecast()[listIndex].getWindSpeed()));
+            speed.setText(Float.toString(database.getDailyForecast()[listIndex].getWindSpeed())+" m/s");
         }
     }
 }
