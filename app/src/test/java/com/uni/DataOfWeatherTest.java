@@ -43,12 +43,12 @@ public class DataOfWeatherTest {
 
     @Test
     public void getPressure() {
-        assertEquals(1010, dataOfWeather.getPressure());
+        assertEquals(1010, dataOfWeather.getPressure(), 0.0001);
     }
 
     @Test
     public void getHumidity() {
-        assertEquals(75, dataOfWeather.getHumidity());
+        assertEquals(75, dataOfWeather.getHumidity(), 0.0001);
     }
 
     @Test
