@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.content.Context;
+import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -114,6 +115,7 @@ public class ScrollingActivity extends AppCompatActivity {
         map.put("50n", R.drawable.ic__50n);
 
         new ScrollingActivity.Request().execute();
+
         Windspeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

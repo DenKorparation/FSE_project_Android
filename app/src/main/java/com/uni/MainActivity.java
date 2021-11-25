@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -45,6 +46,37 @@ public class MainActivity extends AppCompatActivity {
         user_field = findViewById(R.id.user_field);
         main_btn = findViewById(R.id.main_button);
 
+        user_field.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER){
+                    main_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            if (MainActivity.user_field.getText().toString().trim().equals("")) {
+
+                            }
+                            else {
+                                database.setNameOfCity(MainActivity.user_field.getText().toString().trim());
+
+                                openScrollingActivity();
+
+                                //icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
+                            }
+
+
+                            InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                        }
+                    });
+                    return true;
+
+                }
+                return false;
+            }
+        });
         main_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
