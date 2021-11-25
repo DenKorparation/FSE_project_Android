@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 public class Database {
     private static final int numberOfHours = 48;
-    private int zoom;
+    public static int zoom;
     private static final int numberOfDays = 7;
     private  static  final String API_KEYS = "c76548e17d6b42b99e631401cd0e0f75";
     private static final String MAP_API_KEYS = "LOSBNUlvpwa89u2MXMh5EusanAKtrRXh";
@@ -34,7 +34,7 @@ public class Database {
     private String weatherMap;
     private double cityLongitude; //долгота
     private double cityLatitude; //широта
-    private String mapLayer;
+    public String mapLayer;
 
 
     public Database(){
@@ -62,7 +62,7 @@ public class Database {
         }
     }
 
-    private void reqMap() {
+    public void reqMap() {
         int xCoord, yCoord;
         xCoord = (int) ((cityLongitude + 180.d) / 360.d * Math.pow(2, zoom));
         yCoord = (int) (-(cityLatitude - 90.d) / 180.d * Math.pow(2, zoom));

@@ -2,6 +2,7 @@ package com.uni;
 
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +23,15 @@ import java.util.Map;
 import static com.uni.MainActivity.database;
 
 public class ScrollingActivity extends AppCompatActivity {
+    private Button temp;
+    private Button prec;
+    private Button clouds;
+    private Button Windspeed;
+    private Button pressurem;
+    private ImageView weathermap;
+    private ImageView imageView8;
+    private Button zoom1;
+    private Button zoomminus;
     private TextView textview6;
     private TextView textView3;
     private ImageView imageView4;
@@ -52,6 +63,15 @@ public class ScrollingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
+        pressurem = findViewById(R.id.button2);
+        temp = findViewById(R.id.button4);
+        prec = findViewById(R.id.button6);
+        Windspeed = findViewById(R.id.button5);
+        clouds = findViewById(R.id.button3);
+        weathermap = findViewById(R.id.map2);
+        imageView8=findViewById(R.id.map1);
+        zoom1 = findViewById(R.id.button8);
+        zoomminus = findViewById(R.id.button9);
         textview6 = findViewById(R.id.textView6);
         textView5 = findViewById(R.id.textView5);
         textView3 = findViewById(R.id.textView3);
@@ -89,7 +109,70 @@ public class ScrollingActivity extends AppCompatActivity {
         map.put("13n", R.drawable.ic__13n);
         map.put("50d", R.drawable.ic__50d);
         map.put("50n", R.drawable.ic__50n);
+
         new ScrollingActivity.Request().execute();
+        Windspeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database.setMapLayer("wind_new");
+                new Request().execute();
+                
+
+            }
+        });
+        pressurem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database.setMapLayer("pressure_new");
+                new Request().execute();
+
+            }
+        });
+        clouds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database.setMapLayer("clouds_new");
+                new Request().execute();
+
+
+            }
+        });
+        temp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database.setMapLayer("temp_new");
+                new Request().execute();
+
+
+            }
+        });
+        prec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database.setMapLayer("precipitation_new");
+                new Request().execute();
+
+
+            }
+        });
+        zoom1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database.zoomIncrement();
+                new Request().execute();
+
+
+            }
+        });
+        zoomminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database.zoomDecrement();
+                new Request().execute();
+
+
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,6 +237,9 @@ public class ScrollingActivity extends AppCompatActivity {
                 imageView3.setImageResource(R.drawable.ic_temp);
                 imageView1.setImageResource(R.drawable.pressure);
                 textView5.setText("Ежедневный прогноз");
+                Picasso.get().load(database.getMap()).into(imageView8);
+                Picasso.get().load(database.getWeatherMap()).into(weathermap);
+
             } else
                 textView4.setText("Incorrect data");
 
