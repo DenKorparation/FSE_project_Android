@@ -23,6 +23,7 @@ import java.util.Map;
 import static com.uni.MainActivity.database;
 
 public class ScrollingActivity extends AppCompatActivity {
+
     private Button temp;
     private Button prec;
     private Button clouds;
@@ -55,6 +56,7 @@ public class ScrollingActivity extends AppCompatActivity {
     private ImageView imageView2;
     private TextView textView4;
     private TextView textView5;
+    private ImageView legend;
     //  private ActivityScrollingBinding binding;
     private int id;
 
@@ -63,6 +65,7 @@ public class ScrollingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
+        legend = findViewById(R.id.imageView4);
         pressurem = findViewById(R.id.button2);
         temp = findViewById(R.id.button4);
         prec = findViewById(R.id.button6);
@@ -115,8 +118,9 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database.setMapLayer("wind_new");
+                legend.setImageResource(R.drawable.wind_new);
                 new Request().execute();
-                
+
 
             }
         });
@@ -124,6 +128,7 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database.setMapLayer("pressure_new");
+                legend.setImageResource(R.drawable.pressure_new);
                 new Request().execute();
 
             }
@@ -132,6 +137,7 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database.setMapLayer("clouds_new");
+
                 new Request().execute();
 
 
@@ -141,6 +147,7 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database.setMapLayer("temp_new");
+                legend.setImageResource(R.drawable.temp_new);
                 new Request().execute();
 
 
@@ -150,6 +157,7 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database.setMapLayer("precipitation_new");
+                legend.setImageResource(R.drawable.precipitation_new);
                 new Request().execute();
 
 
@@ -231,7 +239,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 ScrollingActivity.result_info.setText(Float.toString(database.getCurWeatherData().getTemp()) + "°C");
                 feelslike.setText(Float.toString(database.getCurWeatherData().getFeelsLikeTemp()) + "°C");
                 windspeed.setText(Float.toString(database.getCurWeatherData().getWindSpeed()) + " m/s");
-                pressure.setText(Float.toString(database.getCurWeatherData().getPressure()) + " GPa");
+                pressure.setText(Float.toString(database.getCurWeatherData().getPressure()) + " HPa");
                 icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
                 textView4.setText(database.getNameOfCity());
                 imageView3.setImageResource(R.drawable.ic_temp);
