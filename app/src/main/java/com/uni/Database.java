@@ -274,7 +274,7 @@ public class Database {
             zoom++;
     };
     public void zoomDecrement(){
-        if(zoom > 0)
+        if(zoom > 1)
             zoom--;
     };
 
