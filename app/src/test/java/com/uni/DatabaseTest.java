@@ -5,27 +5,32 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-class DatabaseTest {
+public class DatabaseTest {
     Database database;
 
+    public DatabaseTest()
+    {
+
+    }
+
     @Before
-    void setUp() {
+    public void setUp() {
         database = new Database();
         database.setNameOfCity("Minsk");
     }
 
     @Test
-    void getCurWeatherData() {
+    public void getCurWeatherData() {
         assertNotNull(database.getCurWeatherData());
     }
 
     @Test
-    void getHourlyForecast() {
+    public void getHourlyForecast() {
         assertNotNull(database.getHourlyForecast());
     }
 
     @Test
-    void getDailyForecast() {
+    public void getDailyForecast() {
         assertNotNull(database.getDailyForecast());
     }
 

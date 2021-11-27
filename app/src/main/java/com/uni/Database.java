@@ -68,12 +68,12 @@ public class Database {
         yCoord = (int) (-(cityLatitude - 90.d) / 180.d * Math.pow(2, zoom));
         weatherMap = "https://tile.openweathermap.org/map/" + mapLayer + "/" + Integer.toString(zoom) + "/" + Integer.toString(xCoord) + "/" + Integer.toString(yCoord) + ".png?appid=" + API_KEYS;
         map = "https://www.mapquestapi.com/staticmap/v5/map?key=" + MAP_API_KEYS + "&center=" +
-                Double.toString(cityLatitude) + "," + Double.toString(cityLongitude) +
+                (-(yCoord + 0.5) * 180.d / Math.pow(2, zoom) + 90.d) + "," + Double.toString((xCoord + 0.5) * 360.d / Math.pow(2, zoom) - 180.d) +
                 "&size=256,256@2x&zoom=" + zoom;
         System.out.println("https://tile.openweathermap.org/map/" + mapLayer + "/" + Integer.toString(zoom) + "/" + Integer.toString(xCoord) + "/" + Integer.toString(yCoord) + ".png?appid=" + API_KEYS);
 
         System.out.println("https://www.mapquestapi.com/staticmap/v5/map?key=" + MAP_API_KEYS + "&center=" +
-                Double.toString(cityLatitude) + "," + Double.toString(cityLongitude) +
+                (-(yCoord + 0.5) * 180.d / Math.pow(2, zoom) + 90.d) + "," + Double.toString((xCoord + 0.5) * 360.d / Math.pow(2, zoom) - 180.d) +
                 "&size=256,256@2x&zoom=" + zoom);
     }
 
@@ -94,6 +94,8 @@ public class Database {
                     curWeatherData.setCondition(obj.getJSONArray("weather").getJSONObject(0).getString("main"));
                     curWeatherData.setDescription(obj.getJSONArray("weather").getJSONObject(0).getString("description"));
                     curWeatherData.setIdIcon(obj.getJSONArray("weather").getJSONObject(0).getString("icon"));
+                    
+                    codeOfCountry = obj.getJSONObject("sys").getString("country");
 
                     if(curWeatherData.getIdIcon().charAt(curWeatherData.getIdIcon().length() - 1) == 'd')
                         partOfDay = "day";
@@ -274,7 +276,7 @@ public class Database {
             zoom++;
     };
     public void zoomDecrement(){
-        if(zoom > 0)
+        if(zoom > 1)
             zoom--;
     };
 
