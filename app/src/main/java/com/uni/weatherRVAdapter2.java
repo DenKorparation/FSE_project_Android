@@ -14,14 +14,33 @@ import java.util.TimeZone;
 
 import static com.uni.MainActivity.database;
 
+/**
+ * @author Vlad and Denis
+ * @version 1.0
+ * Daily Adapter
+ */
 public class weatherRVAdapter2 extends RecyclerView.Adapter<weatherRVAdapter2.WeatherViewHolder>{
 
+    /**
+     * ViewHolderCount
+     */
     private static int viewHolderCount;
+    /**
+     * Amount of blocks
+     */
     private int numberItems;
+
+    /**
+     * @param numberofItems daily adapter
+     */
     public weatherRVAdapter2(int numberofItems){
         numberItems = numberofItems;
         viewHolderCount = 0;
     }
+
+    /**
+     * Creating daily holder
+     */
     @Override
     public WeatherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -34,22 +53,51 @@ public class weatherRVAdapter2 extends RecyclerView.Adapter<weatherRVAdapter2.We
 
     }
 
+    /**
+     * @param holder right holder for info
+     * @param position right position for info
+     */
     @Override
     public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
     holder.bind(position);
     }
 
+    /**
+     * @return Number of elements
+     */
     @Override
     public int getItemCount() {
         return numberItems;
     }
 
+    /**
+     * Daily Recycler View
+     */
     class WeatherViewHolder extends RecyclerView.ViewHolder {
+        /**
+         * Daily day temperature
+         */
         TextView tempday;
+        /**
+         * Daily time
+         */
         TextView time;
+        /**
+         * Daily icon of the weather
+         */
         ImageView icon;
+        /**
+         * Daily wind speed
+         */
         TextView speed;
+        /**
+         * Daily night temperature
+         */
         TextView tempnight;
+
+        /**
+         * @param itemView Daily holder
+         */
         public WeatherViewHolder(@NonNull View itemView) {
             super(itemView);
             tempday = itemView.findViewById(R.id.idTVTemperatureday);
@@ -60,6 +108,9 @@ public class weatherRVAdapter2 extends RecyclerView.Adapter<weatherRVAdapter2.We
 
         }
 
+        /**
+         * @param listIndex Putting info in parametrs
+         */
         void bind(int listIndex) {
             tempday.setText(Float.toString(database.getDailyForecast()[listIndex].getTempDay())+ "°C");
             tempnight.setText(Float.toString(database.getDailyForecast()[listIndex].getTempNight())+"°C");

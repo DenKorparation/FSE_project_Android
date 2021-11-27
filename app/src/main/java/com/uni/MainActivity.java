@@ -1,5 +1,4 @@
 package com.uni;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONObject;
@@ -28,24 +28,43 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.uni.ScrollingActivity.*;
-
+/**
+ * @author Vlad
+ * @version 1.0
+ * First page
+ */
 public class MainActivity extends AppCompatActivity {
-
+    /**
+     * database
+     */
     public static Database database;
+    /**
+     * Field for town-name on the 1 page
+     */
     public static EditText user_field;
+    /**
+     * Button for getting info on the 1 page
+     */
     private Button main_btn;
-    private TextView textView;
 
+    /**
+     * @param savedInstanceState 1 page
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /**
+         * Information on first page
+         */
         setContentView(R.layout.activity_main);
-
+         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO
+         );
         database = new Database();
-        textView = findViewById(R.id.textView);
         user_field = findViewById(R.id.user_field);
         main_btn = findViewById(R.id.main_button);
-
+        /**
+         * Opening second page by clicking on ENTER
+         */
         user_field.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -53,59 +72,49 @@ public class MainActivity extends AppCompatActivity {
                     main_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
-
                             if (MainActivity.user_field.getText().toString().trim().equals("")) {
-
                             }
                             else {
                                 database.setNameOfCity(MainActivity.user_field.getText().toString().trim());
-
                                 openScrollingActivity();
-
                                 //icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
                             }
-
-
                             InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                             inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                         }
                     });
                     return true;
-
                 }
                 return false;
             }
         });
+        /**
+         * Button-click
+         */
         main_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (MainActivity.user_field.getText().toString().trim().equals("")) {
-
                 }
                 else {
                     database.setNameOfCity(MainActivity.user_field.getText().toString().trim());
-
+                    /**
+                     * Opening second page after button-click
+                     */
                     openScrollingActivity();
-
                     //icon.setImageResource(map.get(database.getCurWeatherData().getIdIcon()));
                 }
-
-
                 InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
     }
-
+    /**
+     * Opening second page
+     */
     public void openScrollingActivity(){
-
         Intent intent = new Intent(this, ScrollingActivity.class);
         startActivity(intent);
     }
-
-
     }
 

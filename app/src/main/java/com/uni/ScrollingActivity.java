@@ -24,45 +24,151 @@ import java.util.Map;
 
 import static com.uni.MainActivity.database;
 
+/**
+ * @author Vlad
+ * @version 1.0
+ * Second page with scroll function
+ */
 public class ScrollingActivity extends AppCompatActivity {
 
+    /**
+     * Name of weather-map layer
+     */
     private String layer;
+    /**
+     * Button for temperature-layer
+     */
     private Button temp;
+    /**
+     * Button for precipitation-layer
+     */
     private Button prec;
+    /**
+     * Button for clouds-layer
+     */
     private Button clouds;
+    /**
+     * Button for windspeed-layer
+     */
     private Button Windspeed;
+    /**
+     * Button for pressure-layer
+     */
     private Button pressurem;
+    /**
+     * Weather-map
+     */
     private ImageView weathermap;
+    /**
+     * Geographical map
+     */
     private ImageView imageView8;
+    /**
+     * zoom+ button
+     */
     private Button zoom1;
+    /**
+     * zoom- button
+     */
     private Button zoomminus;
+    /**
+     * Some const text
+     */
     private TextView textview6;
+    /**
+     * Some const text
+     */
     private TextView textView3;
+    /**
+     * Temperature-icon for the current weather
+     */
     private ImageView imageView4;
+    /**
+     * Fellslike temprature-icon for the current weather
+     */
     private ImageView imageView3;
+    /**
+     * Pressure-icon for current weather
+     */
     private ImageView imageView1;
+    /**
+     * Current temperature
+     */
     public static TextView result_info;
+    /**
+     * Current fellslike temperature
+     */
     public static TextView feelslike;
+    /**
+     * Current windspeed
+     */
     public static TextView windspeed;
+    /**
+     * Current pressure
+     */
     public static TextView pressure;
+    /**
+     * Icon for the current weather
+     */
     public static ImageView icon;
-    public static String idIcons;
+    /**
+     * pack of weather-icons
+     */
     public static Map<String, Integer> map = new HashMap<String, Integer>();
+    /**
+     * Adapter for hourly weather
+     */
     public static weatherRVAdapter weatherRvAdapter;
+    /**
+     * Adapter for daily weather
+     */
     public static weatherRVAdapter2 weatherRVAdapter2;
+    /**
+     * Layoutmanager for hourly weather
+     */
     public static LinearLayoutManager layoutManager;
+    /**
+     * layoutmanager for daily weather
+     */
     public static LinearLayoutManager layoutManager2;
+    /**
+     * Hourly recycler view
+     */
     public static RecyclerView weatherlist;
+    /**
+     * Daily recycler view
+     */
     public static RecyclerView weatherlist2;
+    /**
+     * Button for getting info on the 2 page
+     */
     private Button button;
+    /**
+     * User-field for the name of a town
+     */
     private EditText textView2;
+    /**
+     * Windspeed-icon for the curent weather
+     */
     private ImageView imageView2;
+    /**
+     * Town-name
+     */
     private TextView textView4;
+    /**
+     * some const text
+     */
     private TextView textView5;
+    /**
+     * Weather-legend
+     */
     private ImageView legend;
     //  private ActivityScrollingBinding binding;
-    private int id;
 
+
+    /**
+     * @param savedInstanceState Second page info
+     */
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +227,9 @@ public class ScrollingActivity extends AppCompatActivity {
         new ScrollingActivity.Request().execute();
 
         Windspeed.setOnClickListener(new View.OnClickListener() {
+            /**
+             * @param v windspeed-button click
+             */
             @Override
             public void onClick(View v) {
                 database.setMapLayer("wind_new");
@@ -132,6 +241,9 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
         pressurem.setOnClickListener(new View.OnClickListener() {
+            /**
+             * @param v pressure-button click
+             */
             @Override
             public void onClick(View v) {
                 database.setMapLayer("pressure_new");
@@ -142,6 +254,9 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
         clouds.setOnClickListener(new View.OnClickListener() {
+            /**
+             * @param v Clouds-button click
+             */
             @Override
             public void onClick(View v) {
                 new Request().execute();
@@ -152,6 +267,9 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
         temp.setOnClickListener(new View.OnClickListener() {
+            /**
+             * @param v Temp button click
+             */
             @Override
             public void onClick(View v) {
                 database.setMapLayer("temp_new");
@@ -163,6 +281,9 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
         prec.setOnClickListener(new View.OnClickListener() {
+            /**
+             * @param v Precipitation button click
+             */
             @Override
             public void onClick(View v) {
                 database.setMapLayer("precipitation_new");
@@ -173,6 +294,9 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
         zoom1.setOnClickListener(new View.OnClickListener() {
+            /**
+             * @param v Zoom+ button click
+             */
             @Override
             public void onClick(View v) {
                 database.zoomIncrement();
@@ -182,6 +306,9 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
         zoomminus.setOnClickListener(new View.OnClickListener() {
+            /**
+             * @param v Zoom- button click
+             */
             @Override
             public void onClick(View v) {
                 database.zoomDecrement();
@@ -191,6 +318,9 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
         button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * @param v Getting info
+             */
             @Override
             public void onClick(View v) {
 
@@ -212,6 +342,9 @@ public class ScrollingActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * request
+     */
     private class Request extends AsyncTask<String, String, String> {
 
         protected void onPreExecute() {

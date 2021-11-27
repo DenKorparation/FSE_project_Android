@@ -16,27 +16,89 @@ import android.widget.ImageView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ * @author Denis
+ * @version 1.0
+ * Database
+ */
 public class Database {
+    /**
+     * How much hours for hourly weather we have
+     */
     private static final int numberOfHours = 48;
+    /**
+     * Parametr for map zoom
+     */
     public static int zoom;
+    /**
+     * How much days for daily weather we have
+     */
     private static final int numberOfDays = 7;
+    /**
+     * API Weather Key
+     */
     private  static  final String API_KEYS = "c76548e17d6b42b99e631401cd0e0f75";
+    /**
+     * API Map key
+     */
     private static final String MAP_API_KEYS = "LOSBNUlvpwa89u2MXMh5EusanAKtrRXh";
+    /**
+     * current data
+     */
     private DataOfWeather curWeatherData = new DataOfWeather();
+    /**
+     * Hourly data
+     */
     private DataOfWeather[] hourlyForecast = new DataOfWeather [numberOfHours];
+    /**
+     * Daily data
+     */
     private DataOfWeather[] dailyForecast = new DataOfWeather[numberOfDays];
+    /**
+     * Name of city
+     */
     private String nameOfCity;
+    /**
+     * Code of country
+     */
     private String codeOfCountry;
+    /**
+     * Current weather condition
+     */
     private String cur_Condition;
+    /**
+     * Part of day
+     */
     private String partOfDay;
+    /**
+     * Data-check data
+     */
     private boolean isCorrectData;
+    /**
+     * Geographical map
+     */
     private String map;
+    /**
+     * Weather map
+     */
     private String weatherMap;
+    /**
+     * Longitude coordinate of city
+     */
     private double cityLongitude; //долгота
+    /**
+     * Latitude coordinate of city
+     */
     private double cityLatitude; //широта
+    /**
+     * Name of the weather-map layer
+     */
     public String mapLayer;
 
 
+    /**
+     * database
+     */
     public Database(){
         zoom = 9;
         mapLayer = "temp_new";
@@ -52,6 +114,9 @@ public class Database {
         }
     }
 
+    /**
+     * request
+     */
     public void request() {
 
         reqCurWeather("https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&lang=ru&units=metric&appid=" + API_KEYS);
@@ -62,6 +127,9 @@ public class Database {
         }
     }
 
+    /**
+     * Map Request
+     */
     public void reqMap() {
         int xCoord, yCoord;
         xCoord = (int) ((cityLongitude + 180.d) / 360.d * Math.pow(2, zoom));
@@ -77,6 +145,9 @@ public class Database {
                 "&size=256,256@2x&zoom=" + zoom);
     }
 
+    /**
+     * @param url current weather request
+     */
     private void reqCurWeather(String url){
         System.out.println(url);
         try {
@@ -121,6 +192,9 @@ public class Database {
         }
     }
 
+    /**
+     * @param url Hourly request
+     */
     private void reqHourlyForecast(String url){
         System.out.println(url);
         try{
@@ -152,6 +226,9 @@ public class Database {
         }
     }
 
+    /**
+     * @param url Daily request
+     */
     private void reqDailyForecast(String url){
         System.out.println(url);
         try{
@@ -187,6 +264,11 @@ public class Database {
     }
 
 
+    /**
+     * @param urlAdress url
+     * @return
+     * @throws IOException
+     */
     private static String getUrlContent(String urlAdress) throws IOException {
         HttpURLConnection connection = null;
         BufferedReader reader = null;
@@ -219,67 +301,116 @@ public class Database {
         }
     }
 
+    /**
+     * @return current weather data
+     */
     public DataOfWeather getCurWeatherData() {
         return curWeatherData;
     }
 
+    /**
+     * @return Hourly forecast
+     */
     public DataOfWeather[] getHourlyForecast() {
         return hourlyForecast;
     }
 
+    /**
+     * @return Daily forecast
+     */
     public DataOfWeather[] getDailyForecast() {
         return dailyForecast;
     }
 
+    /**
+     * @param nameOfCity name of city
+     */
     public void setNameOfCity(String nameOfCity) {
         this.nameOfCity = nameOfCity;
     }
 
+    /**
+     * @return Getting name of city
+     */
     public String getNameOfCity(){
         return nameOfCity;
     }
 
+    /**
+     * @return correct data check
+     */
     public boolean isCorrectData() {
         return isCorrectData;
     }
 
+    /**
+     * @return Part of day
+     */
     public String getPartOfDay() {
         return partOfDay;
     }
 
+    /**
+     * @return Current condition
+     */
     public String getCur_Condition() {
         return cur_Condition;
     }
 
+    /**
+     * @return getting map
+     */
     public String getMap() {
         return map;
     }
 
+    /**
+     * @return getting citylontitude
+     */
     public double getCityLongitude() {
         return cityLongitude;
     }
 
+    /**
+     * @return getting citylatitude
+     */
     public double getCityLatitude() {
         return cityLatitude;
     }
 
+    /**
+     * @return weather map
+     */
     public String getWeatherMap() {
         return weatherMap;
     }
 
+    /**
+     * @param mapLayer setting weather map layer
+     */
     public void setMapLayer(String mapLayer) {
         this.mapLayer = mapLayer;
     }
 
+    /**
+     * max zoom
+     */
     public void zoomIncrement(){
         if(zoom < 20)
             zoom++;
     };
+
+    /**
+     * min zoom
+     */
     public void zoomDecrement(){
         if(zoom > 1)
             zoom--;
     };
 
+    /**
+     * @return Country code
+     */
     public String getCodeOfCountry() {
         return codeOfCountry;
     }
