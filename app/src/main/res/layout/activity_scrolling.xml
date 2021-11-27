@@ -32,20 +32,20 @@
                     android:textColor="@color/black_shade_1"
                     android:textSize="15sp"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="178dp"
-                    android:layout_marginTop="153dp"
+                    android:layout_marginStart="173dp"
+                    android:layout_marginTop="155dp"
                     android:layout_alignParentTop="true"/>
 
             <TextView
-                    android:layout_width="54dp"
-                    android:layout_height="82dp"
+                    android:layout_width="62dp"
+                    android:layout_height="70dp"
                     android:id="@+id/pressure"
                     android:textAlignment="center"
                     android:fontFamily="sans-serif-black"
                     android:textColor="@color/black_shade_1"
                     android:textSize="15sp"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="346dp"
+                    android:layout_marginStart="338dp"
                     android:layout_marginTop="154dp"
                     android:layout_alignParentTop="true"/>
 
@@ -140,10 +140,10 @@
                     android:layout_height="42dp"
 
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="156dp"
+                    android:layout_marginTop="154dp"
                     android:id="@+id/imageView9"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="179dp"/>
+                    android:layout_marginStart="174dp"/>
 
             <ImageView
                     android:layout_width="43dp"
@@ -194,9 +194,9 @@
 
 
                     android:layout_marginTop="152dp"
-                    android:layout_marginStart="84dp"
+                    android:layout_marginStart="92dp"
                     android:layout_alignParentTop="true"
-                    android:layout_marginEnd="221dp"/>
+                    android:layout_marginEnd="213dp"/>
 
             <TextView
                     android:fontFamily="sans-serif-black"
@@ -244,9 +244,9 @@
                     android:layout_height="294dp"
 
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="13dp"
+                    android:layout_marginStart="3dp"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="707dp"
+                    android:layout_marginTop="703dp"
                     android:id="@+id/map1"/>
 
             <ImageView
@@ -254,9 +254,9 @@
                     android:layout_height="296dp"
 
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="11dp"
+                    android:layout_marginStart="0dp"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="703dp"
+                    android:layout_marginTop="702dp"
                     android:id="@+id/map2"/>
 
             <Button
@@ -265,9 +265,9 @@
                     android:layout_height="40sp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginEnd="3dp"
+                    android:layout_marginEnd="1dp"
                     android:textSize="10sp"
-                    android:layout_marginTop="707dp"
+                    android:layout_marginTop="708dp"
                     android:id="@+id/button2"/>
 
             <Button
@@ -277,19 +277,19 @@
                     android:layout_height="40sp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginEnd="3dp"
+                    android:layout_marginEnd="0dp"
                     android:layout_marginTop="808dp"
                     android:id="@+id/button3"/>
 
             <Button
                     android:text="Скорость ветра"
                     android:textSize="10sp"
-                    android:layout_width="130sp"
-                    android:layout_height="40sp"
+                    android:layout_width="132dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginTop="860dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginTop="859dp"
                     android:id="@+id/button5"/>
 
             <Button
@@ -299,8 +299,8 @@
                     android:textSize="10sp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginTop="912dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginTop="911dp"
                     android:id="@+id/button6"/>
 
             <Button
@@ -310,7 +310,7 @@
                     android:layout_height="40sp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="-1dp"
                     android:layout_marginTop="758dp"
                     android:id="@+id/button4"/>
 
@@ -335,7 +335,7 @@
                     android:id="@+id/button9"/>
 
             <ImageView
-                    android:layout_width="264dp"
+                    android:layout_width="252dp"
                     android:layout_height="wrap_content"
 
                     android:layout_alignParentStart="true"

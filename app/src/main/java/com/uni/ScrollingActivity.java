@@ -9,6 +9,7 @@ import android.content.Context;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import static com.uni.MainActivity.database;
 
 public class ScrollingActivity extends AppCompatActivity {
 
+    private String layer;
     private Button temp;
     private Button prec;
     private Button clouds;
@@ -65,7 +67,9 @@ public class ScrollingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_scrolling);
+        layer = "pressure_new";
         legend = findViewById(R.id.imageView4);
         pressurem = findViewById(R.id.button2);
         temp = findViewById(R.id.button4);
@@ -73,7 +77,7 @@ public class ScrollingActivity extends AppCompatActivity {
         Windspeed = findViewById(R.id.button5);
         clouds = findViewById(R.id.button3);
         weathermap = findViewById(R.id.map2);
-        imageView8=findViewById(R.id.map1);
+        imageView8 = findViewById(R.id.map1);
         zoom1 = findViewById(R.id.button8);
         zoomminus = findViewById(R.id.button9);
         textview6 = findViewById(R.id.textView6);
@@ -92,7 +96,7 @@ public class ScrollingActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         textView2 = findViewById(R.id.textView2);
         imageView3 = findViewById(R.id.imageView10);
-        layoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         textView4 = findViewById(R.id.textView4);
         map.put("01d", R.drawable.ic__1d);
@@ -120,8 +124,9 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database.setMapLayer("wind_new");
-                legend.setImageResource(R.drawable.wind_new);
                 new Request().execute();
+                legend.setImageResource(R.drawable.wind_new);
+                layer = "wind_new";
 
 
             }
@@ -130,17 +135,18 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database.setMapLayer("pressure_new");
-                legend.setImageResource(R.drawable.pressure_new);
                 new Request().execute();
+                legend.setImageResource(R.drawable.pressure_new);
+                layer = "pressure_new";
 
             }
         });
         clouds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database.setMapLayer("clouds_new");
-
                 new Request().execute();
+                database.setMapLayer("clouds_new");
+                layer = "clouds_new";
 
 
             }
@@ -149,8 +155,9 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database.setMapLayer("temp_new");
-                legend.setImageResource(R.drawable.temp_new);
                 new Request().execute();
+                legend.setImageResource(R.drawable.temp_new);
+                layer = "temp_new";
 
 
             }
@@ -159,9 +166,9 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database.setMapLayer("precipitation_new");
-                legend.setImageResource(R.drawable.precipitation_new);
                 new Request().execute();
-
+                legend.setImageResource(R.drawable.precipitation_new);
+                layer = "prec_new";
 
             }
         });
@@ -190,8 +197,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
                 if (textView2.getText().toString().trim().equals("")) {
                     Toast.makeText(ScrollingActivity.this, R.string.no_user_input, Toast.LENGTH_LONG).show();
-                }
-                else {
+                } else {
                     database.setNameOfCity(textView2.getText().toString().trim());
                     new Request().execute();
 
@@ -227,6 +233,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 weatherlist.setLayoutManager(layoutManager);
                 weatherlist.setHasFixedSize(true);
                 weatherRvAdapter = new weatherRVAdapter(48);
+
                 weatherlist.setAdapter(weatherRvAdapter);
                 weatherRvAdapter.notifyItemChanged(0, 47);
                 textView3.setText("Почасовой прогноз");
@@ -236,7 +243,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 weatherlist2.setHasFixedSize(true);
                 weatherRVAdapter2 = new weatherRVAdapter2(7);
                 weatherlist2.setAdapter(weatherRVAdapter2);
-                weatherRVAdapter2.notifyItemChanged(0,6);
+                weatherRVAdapter2.notifyItemChanged(0, 6);
                 imageView2.setImageResource(R.drawable.windspeed);
                 ScrollingActivity.result_info.setText(Float.toString(database.getCurWeatherData().getTemp()) + "°C");
                 feelslike.setText(Float.toString(database.getCurWeatherData().getFeelsLikeTemp()) + "°C");
@@ -249,14 +256,25 @@ public class ScrollingActivity extends AppCompatActivity {
                 textView5.setText("Ежедневный прогноз");
                 Picasso.get().load(database.getMap()).into(imageView8);
                 Picasso.get().load(database.getWeatherMap()).into(weathermap);
-
+                if (layer == "pressure_new") {
+                    legend.setImageResource(R.drawable.pressure_new);
+                }
+                if (layer == "temp_new") {
+                    legend.setImageResource(R.drawable.temp_new);
+                }
+                if (layer == "prec_new") {
+                    legend.setImageResource(R.drawable.precipitation_new);
+                }
+                if (layer == "clouds_new") {
+                    legend.setImageResource(R.drawable.clouds_new);
+                }
+                if (layer == "wind_new") {
+                    legend.setImageResource(R.drawable.wind_new);
+                }
             } else
                 textView4.setText("Incorrect data");
 
+
         }
-
-
-
-
     }
 }
