@@ -35,6 +35,14 @@ public class DatabaseTest {
             database.request();
     }
 
+    @Test(timeout = 10000)
+    public void requestIncorrectData() throws Exception{
+        database.setNameOfCity("1");
+        database.request();
+        assertEquals(false, database.isCorrectData());
+    }
+
+
     @Test
     public void setNameOfCity() {
         database.setNameOfCity("Minsk");
