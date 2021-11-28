@@ -17,7 +17,7 @@ sonarqube {
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.java.coveragePlugin", "jacoco"
         property "sonar.dynamicAnalysis", "reuseReports"
-        property "sonar.jacoco.reportPath", "${project.basedir}/../app/jacoco/testDebugUnitTest.exec"
+        property "sonar.jacoco.reportPath", "${project.rootDir}/app/build/jacoco/testDebugUnitTest.exec"
         property "sonar.language", "java"
     }
 }
