@@ -17,7 +17,7 @@ import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
-import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -387,8 +387,8 @@ public class ScrollingActivity extends AppCompatActivity {
                 imageView3.setImageResource(R.drawable.ic_temp);
                 imageView1.setImageResource(R.drawable.pressure);
                 textView5.setText("Ежедневный прогноз");
-                Picasso.get().load(database.getMap()).into(imageView8);
-                Picasso.get().load(database.getWeatherMap()).into(weathermap);
+                //Picasso.get().load(database.getMap()).into(imageView8);
+                //Picasso.get().load(database.getWeatherMap()).into(weathermap);
                 if (layer == "pressure_new") {
                     legend.setImageResource(R.drawable.pressure_new);
                 }
