@@ -45,10 +45,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            testCoverageEnabled true
+            testCoverageEnabled false
         }
         debug {
-            testCoverageEnabled true
+            testCoverageEnabled false
         }
     }
     compileOptions {
